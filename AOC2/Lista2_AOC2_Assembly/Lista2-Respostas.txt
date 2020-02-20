@@ -1,0 +1,79 @@
+P4) 
+a) Em cada um dos formatos, obteremos 2 bits extras para serem utilizados em outros campos.
+
+b) Eu atribuiria os bits extras para o campo de funct porque esse campo seleciona possíveis variações da operação especificada pelo opcode, logo, mais bits seria algo útil nesse campo.
+
+c) 
+
+d)
+ 
+P5) Porque implementar uma subtração imediata requeriria, no mínimo, um negador e um incrementador direto em um dos caminhos mais críticos de um MIPS antigo. Isso é hardware extra e tempo perdido, algo que acarretaria em perda de desempenho. Além disso, a soma imediata de um valor negativo é igual a subtração imediata com um número positivo. Dessa forma, pode-se usar a soma imediata para realizar essas subtrações imediatas. 
+
+P6) O problema apresentado nessa implemetação é que o código vai cair no "there" independente se os valores armazenados em $s0 e $s2 são iguais ou não. A correção para essa implementação está no arquivo "p6.asm". 
+
+P10) 
+a) Esse registrador deve ser usado para pilha. A adição e subtração do $sp indica o tamanho da pilha, por exemplo, caso seja feito "addi $sp, $sp, -8", estarei alocando espaço para dois valores de 4 bits na pilha e quando eu fizer "addi $sp, $sp, 8" (nesse mesmo programa), estarei colocando o $sp na posição original e apagando as variáveis locais relacionadas.
+
+b) Os registradores $s0-$s7, $fp e $ra.
+
+c) Os registradores $a0-$a3 e $t0-$t9.
+
+d) Caso seja necessário passar parâmetros para uma função, utiliza-se a pilha.
+
+e) Utilizar a pilha
+
+f) Por meio do registrador $ra que salva o procedimento. 
+
+P11) 
+- Stack:   
+Push B
+Push C
+Add
+Pop A
+Push A
+Push C
+Add 
+Pop B
+Push A
+Push B
+Sub
+Pop D
+
+- Acumulador:
+Load B
+Load C
+Add B
+Store A
+Load A
+Add C
+Store B
+Load A
+Sub B
+Store D
+
+- Registrador-Memoria
+Add A,B,C
+Add B,A,C
+Sub D,A,B
+
+- Load/Store
+Load R1, B
+Load R2, C
+Add R3, B,C
+Store A, R3
+Load R1, A
+Load R2, C
+Add R3,A,C
+Store B, R3
+Load R1,A
+Load R2, B
+Sub R3,A,B
+Store D, R3
+
+a) Pelo tamanho do código, a arquitetura mais eficiente é a de Registrador-Memória..
+
+b) A de load/store.
+
+c) Elas são diferentes porque, no caso da arquitetura Registrador-Memória pode haver gargalo por conta dos diversos acessos à memória principal, logo, apesar de possuir o código mais compacto, ela apresenta menor desempenho devido aos acessos à memória. 
+
+P16) Esse código faz diversas operações de add nos registrador e ao final do código tanto o registrador $v0 quanto o registrador $v1 terão seu conteudo igual a 20. 
